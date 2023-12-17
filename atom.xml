@@ -3,11 +3,11 @@
   <title>嘉沐のBlog</title>
   
   <subtitle>AI与云原生</subtitle>
-  <link href="https://cidyerlia.github.io/atom.xml" rel="self"/>
+  <link href="https://cidyerlia.github.io/Jiamu.github.io/atom.xml" rel="self"/>
   
-  <link href="https://cidyerlia.github.io/"/>
+  <link href="https://cidyerlia.github.io/Jiamu.github.io/"/>
   <updated>2023-10-09T16:16:54.000Z</updated>
-  <id>https://cidyerlia.github.io/</id>
+  <id>https://cidyerlia.github.io/Jiamu.github.io/</id>
   
   <author>
     <name>嘉沐</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Golang扫盲式学习——GO并发</title>
-    <link href="https://cidyerlia.github.io/2023/10/09/go1-2/"/>
-    <id>https://cidyerlia.github.io/2023/10/09/go1-2/</id>
+    <link href="https://cidyerlia.github.io/Jiamu.github.io/2023/10/09/go1-2/"/>
+    <id>https://cidyerlia.github.io/Jiamu.github.io/2023/10/09/go1-2/</id>
     <published>2023-10-09T15:23:49.000Z</published>
     <updated>2023-10-09T16:16:54.000Z</updated>
     
@@ -34,17 +34,17 @@
     
     
     
-    <category term="Go" scheme="https://cidyerlia.github.io/categories/Go/"/>
+    <category term="Go" scheme="https://cidyerlia.github.io/Jiamu.github.io/categories/Go/"/>
     
     
-    <category term="原创" scheme="https://cidyerlia.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
+    <category term="原创" scheme="https://cidyerlia.github.io/Jiamu.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
     
   </entry>
   
   <entry>
     <title>超实用的Go语言基础教程，让你快速上手！</title>
-    <link href="https://cidyerlia.github.io/2023/05/12/go1-1/"/>
-    <id>https://cidyerlia.github.io/2023/05/12/go1-1/</id>
+    <link href="https://cidyerlia.github.io/Jiamu.github.io/2023/05/12/go1-1/"/>
+    <id>https://cidyerlia.github.io/Jiamu.github.io/2023/05/12/go1-1/</id>
     <published>2023-05-12T09:03:20.000Z</published>
     <updated>2023-10-09T15:11:04.000Z</updated>
     
@@ -59,10 +59,10 @@
     
     
     
-    <category term="Go" scheme="https://cidyerlia.github.io/categories/Go/"/>
+    <category term="Go" scheme="https://cidyerlia.github.io/Jiamu.github.io/categories/Go/"/>
     
     
-    <category term="原创" scheme="https://cidyerlia.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
+    <category term="原创" scheme="https://cidyerlia.github.io/Jiamu.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
     
   </entry>
   
