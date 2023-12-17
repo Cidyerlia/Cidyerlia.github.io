@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Golang扫盲式学习——GO并发, AI Cloud Native 嘉沐 深度学习 云原生安全基线">
+    <meta name="keywords" content="GO并发, AI Cloud Native 嘉沐 深度学习 云原生安全基线">
     <meta name="description" content="Golang扫盲式学习——GO并发并发与并行😣并发与并行的概念和区别并行：同一个时间段内多个任务同时在不同的CPU核心上执行。强调同一时刻多个任务之间的”同时执行“。
 并发：同一个时间段内多个任务都在进展。强调多个任务间的”交替执行“。
 ">
@@ -19,7 +19,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Golang扫盲式学习——GO并发 | 嘉沐のBlog</title>
+    <title>GO并发 | 嘉沐のBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -335,12 +335,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Golang扫盲式学习——GO并发</h1>
+                    <h1 class="description center-align post-title">GO并发</h1>
                 </div>
             </div>
         </div>
@@ -376,8 +376,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Go/" class="post-category">
-                                Go
+                            <a href="/categories/Go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" class="post-category">
+                                Go语言入门
                             </a>
                         
                     </div>
@@ -389,7 +389,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-10-09
+                    2023-12-17
                 </div>
                 
 
@@ -415,7 +415,7 @@
             <div id="articleContent">
                 <h1 id="Golang扫盲式学习——GO并发"><a href="#Golang扫盲式学习——GO并发" class="headerlink" title="Golang扫盲式学习——GO并发"></a>Golang扫盲式学习——GO并发</h1><h2 id="并发与并行😣"><a href="#并发与并行😣" class="headerlink" title="并发与并行😣"></a>并发与并行😣</h2><h3 id="并发与并行的概念和区别"><a href="#并发与并行的概念和区别" class="headerlink" title="并发与并行的概念和区别"></a>并发与并行的概念和区别</h3><p>并行：同一个时间段内多个任务同时在不同的CPU核心上执行。强调同一时刻多个任务之间的”<strong>同时执行</strong>“。</p>
 <p>并发：同一个时间段内多个任务都在进展。强调多个任务间的”<strong>交替执行</strong>“。</p>
-<img src="/2023/10/09/Go1-2/fig1.jpg" class="" title="并行与并发">
+<img src="/2023/12/17/go-bing-fa/fig1.jpg" class="" title="并行与并发">
 
 <p>随着硬件水平的提高，现在的终端主机都是多个CPU，每个CPU都是多核结构。当多个CPU同时运行起来，跑不同的任务，这属于并行；在一个CPU里的多个核心里同时运行不同的任务，同样也属于并行。而并发是关注一个核心里的多个任务，这时需要交替执行，就是并发。</p>
 <p>CPU是计算单元，有数据才能进行计算。当一个任务被网络I&#x2F;O阻塞，CPU没有数据，就会处于等待。显然，若是能够将等待的时间利用起来，资源利用率会提高。因此，并发处理的主要目的是提高CPU和资源的利用率。</p>
@@ -427,7 +427,7 @@
 <li>Goroutine的执行依赖于操作系统的线程调度。</li>
 </ul>
 <p>Goroutine自身不具备执行上下文，它必须依存在操作系统线程上才可以真正执行。当一个Goroutine被创建时，Go runtime会自动选择一个空闲的操作系统线程,将这个Goroutine的执行上下文绑定到该线程上。</p>
-<img src="/2023/10/09/Go1-2/fig2.jpg" class="" title="GMP模型">
+<img src="/2023/12/17/go-bing-fa/fig2.jpg" class="" title="GMP模型">
 
 <p>上图中G表示Goroutine，P表示一个调度的上下文（<strong>包含了运行 Goroutine 的资源</strong>），M表示一个OS线程。一个操作系统线程可以同时关联多个Goroutine，这些Goroutine会被Go runtime高效地在该线程上调度执行。但任意时刻只会有一个Goroutine获得线程的执行权进行运行（G0就是获得线程权的Goroutine）。当关联的操作系统线程终止时，绑定在该线程上的所有Goroutine也会被终止。</p>
 <ul>
@@ -438,7 +438,7 @@
 <li>在多核CPU上，操作系统可以将不同的Goroutine直接调度到不同的CPU核心上运行。</li>
 </ul>
 <p>这样多个Goroutine就可以同时真正运行，实现并行执行。此时Go并发程序可以发挥多核CPU的强大计算能力。Go runtime会有智能的调度策略，将Goroutine均匀地分布在所有CPU核心上或者以负载均衡的方式进行调度，这取决于Goroutine的数量和系统的CPU核心数。</p>
-<img src="/2023/10/09/Go1-2/fig3.png" class="" title="GMP模型2">
+<img src="/2023/12/17/go-bing-fa/fig3.png" class="" title="GMP模型2">
 
 <p>GMP模型如上图所示。图中涉及5个重要的实体。</p>
 <ul>
@@ -484,9 +484,30 @@
 <li>高并发：利用Goroutine可以轻易地编写高并发程序，一个服务器程序可以同时接待成千上万个客户端。</li>
 <li>Channel通信：Goroutine之间可以通过Channel进行高效的消息通信与同步，这使得编写并发程序变得简单。</li>
 </ol>
-<h3 id="创建Goroutine的语法"><a href="#创建Goroutine的语法" class="headerlink" title="创建Goroutine的语法"></a>创建Goroutine的语法</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span>&#123;&#125;()<span class="hljs-string">``</span><span class="hljs-string">`：第一个`</span><span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;...&#125; <span class="hljs-string">`定义了一个匿名函数(anonymous function)。第二个`</span>()<span class="hljs-string">`代表调用这个匿名函数。</span><br></code></pre></td></tr></table></figure>
+<h3 id="创建Goroutine的语法"><a href="#创建Goroutine的语法" class="headerlink" title="创建Goroutine的语法"></a>创建Goroutine的语法</h3><pre class="language-none"><code class="language-none">
+func()&#123;&#125;()：第一个func() &#123;...&#125; 定义了一个匿名函数(anonymous function)。第二个()代表调用这个匿名函数。
+</code></pre>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-comment">// 创建一个Goroutine</span><br>	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		fmt.Println(<span class="hljs-string">&quot;Hello from Goroutine!&quot;</span>)<br>	&#125;()<br><br>	time.Sleep(<span class="hljs-number">1</span>)<br>	<span class="hljs-comment">// 主Goroutine</span><br>	fmt.Println(<span class="hljs-string">&quot;Hello from main!&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 创建一个Goroutine</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello from Goroutine!"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+  time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token comment">// 主Goroutine</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Hello from main!"</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <h3 id="Goroutine的调度与上下文切换"><a href="#Goroutine的调度与上下文切换" class="headerlink" title="Goroutine的调度与上下文切换"></a>Goroutine的调度与上下文切换</h3><p>为了让不同的Goroutine有机会运行，runtime会在Goroutine之间进行上下文切换。当一个Goroutine运行一定时间或遇到channel操作时，会主动交出线程的执行权，这时runtime会从其他挂起的Goroutine中选择一个继续运行。上下文切换涉及到保存当前运行Goroutine的程序计数器、堆栈指针等上下文信息，并恢复下一个要运行的Goroutine的上下文信息，这个过程需要一定的时间开销。</p>
 <h3 id="Goroutine存在的内存问题及解决方案"><a href="#Goroutine存在的内存问题及解决方案" class="headerlink" title="Goroutine存在的内存问题及解决方案"></a>Goroutine存在的内存问题及解决方案</h3><p>存在的问题：</p>
@@ -516,15 +537,36 @@
 <li>手动回收堆内存</li>
 </ul>
 <p>当一个Goroutine结束时，其私有栈内存会被收回，但堆内存不会自动回收。因此，需要在Goroutine结束前手动回收不再使用的堆内存，否在会发生内存泄露。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 分配一些堆空间</span><br>    buf := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">100</span>)<br>    <span class="hljs-comment">// 使用buf...</span><br>   <br>    <span class="hljs-comment">// Goroutine结束前手动回收buf</span><br>    buf = <span class="hljs-literal">nil</span> <br>&#125;()<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 分配一些堆空间</span>
+    buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+    <span class="token comment">// 使用buf...</span>
 
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> wg sync.WaitGroup<br>wg.Add(<span class="hljs-number">1</span>)<br><span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-keyword">defer</span> wg.Done()   <span class="hljs-comment">// Goroutine结束 decrement WaitGroup计数</span><br>    <span class="hljs-comment">// 分配内存并使用...</span><br>    buf := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">100</span>) <br>    <span class="hljs-comment">// 使用buf...</span><br>    buf = <span class="hljs-literal">nil</span>        <span class="hljs-comment">// 手动回收内存</span><br>&#125;()<br>wg.Wait()           <span class="hljs-comment">// 等待Goroutine结束</span><br></code></pre></td></tr></table></figure>
+  <span class="token comment">// Goroutine结束前手动回收buf</span>
+buf <span class="token operator">=</span> <span class="token boolean">nil</span> 
+
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">// Goroutine结束 decrement WaitGroup计数</span>
+    <span class="token comment">// 分配内存并使用...</span>
+    buf <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">byte</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span> 
+    <span class="token comment">// 使用buf...</span>
+    buf <span class="token operator">=</span> <span class="token boolean">nil</span>        <span class="token comment">// 手动回收内存</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment">// 等待Goroutine结束</span>
+</code></pre>
 
 <h2 id="Channel👍"><a href="#Channel👍" class="headerlink" title="Channel👍"></a>Channel👍</h2><h3 id="Channel的概念与特点"><a href="#Channel的概念与特点" class="headerlink" title="Channel的概念与特点"></a>Channel的概念与特点</h3><blockquote>
 <p>Channels are not closed by default. They need to be closed explicitly with the <code>Close</code> method to indicate that no more values will be sent on the channel. </p>
 </blockquote>
 <p>Channel是一个通信机制，它可以使多个Goroutine之间相互发送数据。Channel允许任意两个Goroutine通过它异步地传递信息。</p>
-<img src="/2023/10/09/Go1-2/fig4.png" class="" title="channel">
+<img src="/2023/12/17/go-bing-fa/fig4.png" class="" title="channel">
 
 <p><strong>特点：</strong></p>
 <ul>
@@ -551,22 +593,116 @@
 <li>无缓冲Channel</li>
 </ul>
 <p><code>unbuffered channel</code> 就是缓冲大小为 0 的 <code>channel</code>，无缓冲区的 channel 本身是不存放数据的，在发送和接收都会被阻塞。也就是相当于，你现在是一个 <code>send</code> 身份，但是当另外一个没有 <code>receive</code> 你发送的值之前，你一直处于阻塞（等待接收）状态；就好比你递东西给别人，别人没接，你就要一直举着东西。相反，如果你现在是一个 <code>receive</code> 身份，你就会一直阻塞（等待发送）状态，在你拿到值之前，你会一直等待。就好比你准备要接东西，别人迟迟不给你，你就要一直等着。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>&#123;&#125;)<br>	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		<span class="hljs-keyword">defer</span> <span class="hljs-built_in">close</span>(ch)<br>		v := &lt;-ch<br>		fmt.Printf(<span class="hljs-string">&quot;receive a struct: %v\n&quot;</span>, v)<br>	&#125;()<br><br>	ch &lt;- <span class="hljs-keyword">struct</span>&#123;&#125;&#123;&#125;<br>	fmt.Println(<span class="hljs-string">&quot;send a struct&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+		v <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+		fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"receive a struct: %v\n"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+ch <span class="token operator">&lt;-</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"send a struct"</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <ul>
 <li>有缓冲Channel</li>
-<li><img src="/2023/10/09/Go1-2/fig5.jpg" class="" title="有缓冲的channel"></li>
+<li><img src="/2023/12/17/go-bing-fa/fig5.jpg" class="" title="有缓冲的channel"></li>
 </ul>
 <p>有缓冲的Channel就是设置了一个buffersize，作为缓冲区的大小。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>, <span class="hljs-number">1</span>)  <span class="hljs-comment">// 设置buffersize大小为1</span><br>	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		<span class="hljs-keyword">defer</span> <span class="hljs-built_in">close</span>(ch)<br>		<span class="hljs-keyword">defer</span> fmt.Println(<span class="hljs-string">&quot;我关闭了&quot;</span>)<br>		ch &lt;- <span class="hljs-number">1</span><br>		ch &lt;- <span class="hljs-number">2</span><br>		fmt.Println(<span class="hljs-string">&quot;send a struct&quot;</span>)<br>	&#125;()<br><br>	time.Sleep(<span class="hljs-number">5</span> * time.Second)<br>	<span class="hljs-keyword">for</span> &#123;<br>		v, ok := &lt;-ch<br>		<span class="hljs-keyword">if</span> !ok &#123;<br>			fmt.Println(<span class="hljs-string">&quot;channel closed&quot;</span>)<br>			<span class="hljs-keyword">break</span><br>		&#125;<br>		fmt.Printf(<span class="hljs-string">&quot;received a struct %v\n&quot;</span>, v)<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
 
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-comment">// output</span><br>received a <span class="hljs-keyword">struct</span> 1<br>received a <span class="hljs-keyword">struct</span> 2<br>send a <span class="hljs-keyword">struct</span><br>我关闭了<br>channel closed<br></code></pre></td></tr></table></figure>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment">// 设置buffersize大小为1</span>
+	<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">defer</span> <span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+		<span class="token keyword">defer</span> fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"我关闭了"</span><span class="token punctuation">)</span>
+		ch <span class="token operator">&lt;-</span> <span class="token number">1</span>
+		ch <span class="token operator">&lt;-</span> <span class="token number">2</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"send a struct"</span><span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+	v<span class="token punctuation">,</span> ok <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch
+	<span class="token keyword">if</span> <span class="token operator">!</span>ok <span class="token punctuation">&#123;</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"channel closed"</span><span class="token punctuation">)</span>
+		<span class="token keyword">break</span>
+	<span class="token punctuation">&#125;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">"received a struct %v\n"</span><span class="token punctuation">,</span> v<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment">// output</span>
+received a <span class="token keyword">struct</span> <span class="token number">1</span>
+received a <span class="token keyword">struct</span> <span class="token number">2</span>
+send a <span class="token keyword">struct</span>
+我关闭了
+channel closed
+</code></pre>
 
 <p>创建Channel时，当size &#x3D;&#x3D;1时，相当于size&#x3D;&#x3D;0，表示创建一个无缓冲的通道。所以，当向通道传入一个1时，缓冲区就满了。此时，必须等接收端将1读走，才能继续向channel发送2。</p>
 <p>将buffersize修改为2时，表示创建一个有缓冲的通道。发送者会一次性将1和2发送到通道里，然后就关闭Channel的写入端。睡眠5秒后，就由接收端将结果读出。</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs gauss"><span class="hljs-comment">// output</span><br>send a <span class="hljs-keyword">struct</span><br>我关闭了<br>received a <span class="hljs-keyword">struct</span> 1<br>received a <span class="hljs-keyword">struct</span> 2<br>channel closed<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token comment">// output</span>
+send a <span class="token keyword">struct</span>
+我关闭了
+received a <span class="token keyword">struct</span> <span class="token number">1</span>
+received a <span class="token keyword">struct</span> <span class="token number">2</span>
+channel closed
+</code></pre>
 
-<h3 id="应用：实现一个生产者消费者模型"><a href="#应用：实现一个生产者消费者模型" class="headerlink" title="应用：实现一个生产者消费者模型"></a>应用：实现一个生产者消费者模型</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">producer</span><span class="hljs-params">(out <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-type">int</span>)</span></span> &#123;<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;<br>		out &lt;- i  <span class="hljs-comment">// 生产一个数据，发送到Channel</span><br>		fmt.Println(<span class="hljs-string">&quot;生产者：&quot;</span>, i)<br>	&#125;<br>	<span class="hljs-built_in">close</span>(out)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">consumer</span><span class="hljs-params">(in &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)</span></span> &#123;<br>	<span class="hljs-keyword">for</span> num := <span class="hljs-keyword">range</span> in &#123;  <span class="hljs-comment">// 从Channel中接收数据</span><br>		fmt.Println(<span class="hljs-string">&quot;消费者：&quot;</span>, num)  <span class="hljs-comment">// 消费数据</span><br>	&#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	<span class="hljs-comment">// 创建一个管道</span><br>	ch := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)<br><br>	<span class="hljs-keyword">go</span> producer(ch)  <span class="hljs-comment">// 启动生产者Goroutine</span><br>	<span class="hljs-keyword">go</span> consumer(ch)  <span class="hljs-comment">// 启动消费者Goroutine</span><br>	<span class="hljs-keyword">go</span> consumer(ch)  <span class="hljs-comment">// 启动消费者Goroutine</span><br><br>	time.Sleep(<span class="hljs-number">5</span> * time.Second)  <span class="hljs-comment">// 等待</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="应用：实现一个生产者消费者模型"><a href="#应用：实现一个生产者消费者模型" class="headerlink" title="应用：实现一个生产者消费者模型"></a>应用：实现一个生产者消费者模型</h3><pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">producer</span><span class="token punctuation">(</span>out <span class="token keyword">chan</span><span class="token operator">&lt;-</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+		out <span class="token operator">&lt;-</span> i  <span class="token comment">// 生产一个数据，发送到Channel</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"生产者："</span><span class="token punctuation">,</span> i<span class="token punctuation">)</span>
+	<span class="token punctuation">&#125;</span>
+	<span class="token function">close</span><span class="token punctuation">(</span>out<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">consumer</span><span class="token punctuation">(</span>in <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token keyword">for</span> num <span class="token operator">:=</span> <span class="token keyword">range</span> in <span class="token punctuation">&#123;</span>  <span class="token comment">// 从Channel中接收数据</span>
+		fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"消费者："</span><span class="token punctuation">,</span> num<span class="token punctuation">)</span>  <span class="token comment">// 消费数据</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">// 创建一个管道</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>
+
+<span class="token keyword">go</span> <span class="token function">producer</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>  <span class="token comment">// 启动生产者Goroutine</span>
+<span class="token keyword">go</span> <span class="token function">consumer</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>  <span class="token comment">// 启动消费者Goroutine</span>
+<span class="token keyword">go</span> <span class="token function">consumer</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>  <span class="token comment">// 启动消费者Goroutine</span>
+
+time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>  <span class="token comment">// 等待</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <h2 id="Channel超时机制"><a href="#Channel超时机制" class="headerlink" title="Channel超时机制"></a>Channel超时机制</h2><h3 id="为什么需要Channel超时机制"><a href="#为什么需要Channel超时机制" class="headerlink" title="为什么需要Channel超时机制"></a>为什么需要Channel超时机制</h3><p>使用 select 可以实现 channel 超时,这可以解决以下问题:</p>
 <ol>
@@ -574,7 +710,17 @@
 <li>实现重试：在超时后可以重新初始化 channel 读取，实现重试的效果。</li>
 <li>限定操作时间：我们可以给定一个时间限制，如果在限定时间内通信未成功，则做默认操作。</li>
 </ol>
-<h3 id="select语句中的case语法"><a href="#select语句中的case语法" class="headerlink" title="select语句中的case语法"></a>select语句中的case语法</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">select</span> &#123;<br><span class="hljs-keyword">case</span> &lt;communication <span class="hljs-number">1</span>&gt;:<br>    &lt;statements&gt;  <span class="hljs-comment">// 执行当 communication 1 成功时 </span><br><span class="hljs-keyword">case</span> &lt;communication <span class="hljs-number">2</span>&gt;:<br>    &lt;statements&gt;  <br><span class="hljs-comment">// ...</span><br><span class="hljs-keyword">default</span>:<br>    &lt;statements&gt;  <span class="hljs-comment">// 默认执行的语句,当没有case可以继续时执行</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="select语句中的case语法"><a href="#select语句中的case语法" class="headerlink" title="select语句中的case语法"></a>select语句中的case语法</h3><pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+<span class="token keyword">case</span> <span class="token operator">&lt;</span>communication <span class="token number">1</span><span class="token operator">></span><span class="token punctuation">:</span>
+    <span class="token operator">&lt;</span>statements<span class="token operator">></span>  <span class="token comment">// 执行当 communication 1 成功时 </span>
+<span class="token keyword">case</span> <span class="token operator">&lt;</span>communication <span class="token number">2</span><span class="token operator">></span><span class="token punctuation">:</span>
+    <span class="token operator">&lt;</span>statements<span class="token operator">></span>  
+<span class="token comment">// ...</span>
+<span class="token keyword">default</span><span class="token punctuation">:</span>
+    <span class="token operator">&lt;</span>statements<span class="token operator">></span>  <span class="token comment">// 默认执行的语句,当没有case可以继续时执行</span>
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <p>select 的一些规则:</p>
 <ol>
@@ -587,23 +733,172 @@
 <li><p>每个case实际上是一个通信操作（channel接收&#x2F;发送），要求必须为channel。</p>
 </li>
 </ol>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br><br>    c1 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)<br>    c2 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>)<br><br>    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>        time.Sleep(<span class="hljs-number">1</span> * time.Second)<br>        c1 &lt;- <span class="hljs-string">&quot;one&quot;</span><br>    &#125;()<br>    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>        time.Sleep(<span class="hljs-number">2</span> * time.Second)<br>        c2 &lt;- <span class="hljs-string">&quot;two&quot;</span><br>    &#125;()<br><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">2</span>; i++ &#123;<br>        <span class="hljs-keyword">select</span> &#123;<br>        <span class="hljs-keyword">case</span> msg1 := &lt;-c1:<br>            fmt.Println(<span class="hljs-string">&quot;received&quot;</span>, msg1)<br>        <span class="hljs-keyword">case</span> msg2 := &lt;-c2:<br>            fmt.Println(<span class="hljs-string">&quot;received&quot;</span>, msg2)<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
 
-<h3 id="应用-select实现Channel超时"><a href="#应用-select实现Channel超时" class="headerlink" title="应用 select实现Channel超时"></a>应用 select实现Channel超时</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    retry := <span class="hljs-number">3</span>          <span class="hljs-comment">// 设置重试次数</span><br>    success := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-keyword">struct</span>&#123;&#125;)<br><br>    <span class="hljs-keyword">for</span> &#123;<br>        <span class="hljs-keyword">select</span> &#123;<br>        <span class="hljs-keyword">case</span> &lt;-success:   <span class="hljs-comment">// 操作成功</span><br>            <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;success&quot;</span>)<br>            <span class="hljs-keyword">return</span><br>        <span class="hljs-keyword">case</span> &lt;-time.After(<span class="hljs-number">1</span> * time.Second): <span class="hljs-comment">// 超时后重试</span><br>            <span class="hljs-keyword">if</span> retry &gt; <span class="hljs-number">0</span> &#123;<br>                retry--<br>                <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;retry...&quot;</span>)<br>                <span class="hljs-keyword">continue</span> <br>            &#125;<br>            <span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;timeout, exit&quot;</span>)<br>            <span class="hljs-keyword">return</span><br>        &#125;<br>    &#125;<br>&#125; <br></code></pre></td></tr></table></figure>
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+c1 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+c2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">string</span><span class="token punctuation">)</span>
+
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+    c1 <span class="token operator">&lt;-</span> <span class="token string">"one"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+    c2 <span class="token operator">&lt;-</span> <span class="token string">"two"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">case</span> msg1 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>c1<span class="token punctuation">:</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"received"</span><span class="token punctuation">,</span> msg1<span class="token punctuation">)</span>
+    <span class="token keyword">case</span> msg2 <span class="token operator">:=</span> <span class="token operator">&lt;-</span>c2<span class="token punctuation">:</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"received"</span><span class="token punctuation">,</span> msg2<span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
+
+<h3 id="应用-select实现Channel超时"><a href="#应用-select实现Channel超时" class="headerlink" title="应用 select实现Channel超时"></a>应用 select实现Channel超时</h3><pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    retry <span class="token operator">:=</span> <span class="token number">3</span>          <span class="token comment">// 设置重试次数</span>
+    success <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token keyword">struct</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">case</span> <span class="token operator">&lt;-</span>success<span class="token punctuation">:</span>   <span class="token comment">// 操作成功</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token keyword">case</span> <span class="token operator">&lt;-</span>time<span class="token punctuation">.</span><span class="token function">After</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span><span class="token punctuation">:</span> <span class="token comment">// 超时后重试</span>
+        <span class="token keyword">if</span> retry <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">&#123;</span>
+            retry<span class="token operator">--</span>
+            <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"retry..."</span><span class="token punctuation">)</span>
+            <span class="token keyword">continue</span> 
+        <span class="token punctuation">&#125;</span>
+        <span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"timeout, exit"</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span> 
+</code></pre>
 
 <p>这里我们实现了重试的逻辑，在 1 秒后会触发超时并重试，一直重试 3 次。如果 3 次后还是超时，则退出操作。</p>
-<h2 id="timer和tickers"><a href="#timer和tickers" class="headerlink" title="timer和tickers"></a>timer和tickers</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>	<span class="hljs-string">&quot;fmt&quot;</span><br>	<span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br><br>	timer1 := time.NewTimer(<span class="hljs-number">2</span> * time.Second)<br><br>	&lt;-timer1.C<br>	fmt.Println(<span class="hljs-string">&quot;Timer 1 fired&quot;</span>)<br><br>	timer2 := time.NewTimer(time.Second)<br>	<span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>		&lt;-timer2.C<br>		fmt.Println(<span class="hljs-string">&quot;Timer 2 fired&quot;</span>)<br>	&#125;()<br>	stop2 := timer2.Stop()<br>	<span class="hljs-keyword">if</span> stop2 &#123;<br>		fmt.Println(<span class="hljs-string">&quot;Timer 2 stopped&quot;</span>)<br>	&#125;<br><br>	time.Sleep(<span class="hljs-number">5</span> * time.Second)<br>&#125;<br></code></pre></td></tr></table></figure>
+<h2 id="timer和tickers"><a href="#timer和tickers" class="headerlink" title="timer和tickers"></a>timer和tickers</h2><pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">"fmt"</span>
+	<span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+timer1 <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">NewTimer</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+
+<span class="token operator">&lt;-</span>timer1<span class="token punctuation">.</span>C
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Timer 1 fired"</span><span class="token punctuation">)</span>
+
+timer2 <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">NewTimer</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	<span class="token operator">&lt;-</span>timer2<span class="token punctuation">.</span>C
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Timer 2 fired"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+stop2 <span class="token operator">:=</span> timer2<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">if</span> stop2 <span class="token punctuation">&#123;</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Timer 2 stopped"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">5</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <p>在代码中，我们首先创建了一个 <code>Timer</code> 对象 <code>timer1</code>，它将在 2 秒钟后触发。我们使用 <code>&lt;-timer1.C</code> 语法来等待 <code>timer1</code> 的触发事件，并在触发后输出一条消息。</p>
 <p>接着，我们又创建了另一个 <code>Timer</code> 对象 <code>timer2</code>，它将在 1 秒钟后触发。不同的是，我们使用一个新的 goroutine 来等待 <code>timer2</code> 的触发事件，并在触发后输出一条消息。注意，在我们启动的 goroutine 中，我们使用了 <code>&lt;-timer2.C</code> 语法来等待 <code>timer2</code> 的触发事件。</p>
 <p>然后，我们调用了 <code>timer2.Stop()</code> 方法来停止 <code>timer2</code> 的触发事件。由于我们在一个 goroutine 中等待 <code>timer2</code> 的触发事件，所以在调用 <code>Stop()</code> 方法后，我们需要判断 <code>timer2</code> 是否成功停止，并输出一条相应的提示信息。</p>
 <p>最后，我们使用 <code>time.Sleep()</code> 函数来让程序休眠 5 秒钟，以等待所有定时器事件的完成。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br><br>    ticker := time.NewTicker(<span class="hljs-number">500</span> * time.Millisecond)<br>    done := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">bool</span>)<br><br>    <span class="hljs-keyword">go</span> <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> &#123;<br>        <span class="hljs-keyword">for</span> &#123;<br>            <span class="hljs-keyword">select</span> &#123;<br>            <span class="hljs-keyword">case</span> &lt;-done:<br>                <span class="hljs-keyword">return</span><br>            <span class="hljs-keyword">case</span> t := &lt;-ticker.C:<br>                fmt.Println(<span class="hljs-string">&quot;Tick at&quot;</span>, t)<br>            &#125;<br>        &#125;<br>    &#125;()<br><br>    time.Sleep(<span class="hljs-number">1600</span> * time.Millisecond)<br>    ticker.Stop()<br>    done &lt;- <span class="hljs-literal">true</span><br>    fmt.Println(<span class="hljs-string">&quot;Ticker stopped&quot;</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+<pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+ticker <span class="token operator">:=</span> time<span class="token punctuation">.</span><span class="token function">NewTicker</span><span class="token punctuation">(</span><span class="token number">500</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Millisecond<span class="token punctuation">)</span>
+done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">)</span>
+
+<span class="token keyword">go</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">select</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">case</span> <span class="token operator">&lt;-</span>done<span class="token punctuation">:</span>
+            <span class="token keyword">return</span>
+        <span class="token keyword">case</span> t <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ticker<span class="token punctuation">.</span>C<span class="token punctuation">:</span>
+            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Tick at"</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span><span class="token number">1600</span> <span class="token operator">*</span> time<span class="token punctuation">.</span>Millisecond<span class="token punctuation">)</span>
+ticker<span class="token punctuation">.</span><span class="token function">Stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+done <span class="token operator">&lt;-</span> <span class="token boolean">true</span>
+fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"Ticker stopped"</span><span class="token punctuation">)</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <p>在代码中，我们首先创建了一个 <code>Ticker</code> 对象 <code>ticker</code>，它将每隔 500 毫秒触发一次。我们使用 <code>&lt;-ticker.C</code> 语法来等待 <code>ticker</code> 的触发事件，并在触发后输出一条消息。</p>
 <p>接着，我们启动了一个 goroutine，用于等待 <code>ticker</code> 的触发事件。在 goroutine 中，我们使用 <code>select</code> 语句来等待两个事件：<code>done</code> 事件和 <code>ticker.C</code> 事件。当接收到 <code>done</code> 事件时，我们就退出 goroutine，并结束 <code>Ticker</code> 的定时器事件。当接收到 <code>ticker.C</code> 事件时，我们就执行相应的操作，输出一条消息。</p>
 <p>在主函数中，我们使用 <code>time.Sleep()</code> 函数让程序休眠 1.6 秒钟，以等待一些 <code>ticker.C</code> 事件的触发。然后，我们调用了 <code>ticker.Stop()</code> 方法来停止 <code>ticker</code> 的定时器事件，这将导致 <code>ticker.C</code> 事件的停止。接着，我们向 <code>done</code> 通道发送了一个值，以通知 goroutine 退出，并输出一条相应的提示信息。</p>
-<h3 id="示例-一个基于超时的并发TCP服务器"><a href="#示例-一个基于超时的并发TCP服务器" class="headerlink" title="示例:一个基于超时的并发TCP服务器"></a>示例:一个基于超时的并发TCP服务器</h3><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">package</span> main<br><br><span class="hljs-keyword">import</span> (<br>    <span class="hljs-string">&quot;fmt&quot;</span><br>    <span class="hljs-string">&quot;time&quot;</span><br>)<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">worker</span><span class="hljs-params">(id <span class="hljs-type">int</span>, jobs &lt;-<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>, results <span class="hljs-keyword">chan</span>&lt;- <span class="hljs-type">int</span>)</span></span> &#123;<br>    <span class="hljs-keyword">for</span> j := <span class="hljs-keyword">range</span> jobs &#123;<br>        fmt.Println(<span class="hljs-string">&quot;worker&quot;</span>, id, <span class="hljs-string">&quot;started  job&quot;</span>, j)<br>        time.Sleep(time.Second)<br>        fmt.Println(<span class="hljs-string">&quot;worker&quot;</span>, id, <span class="hljs-string">&quot;finished job&quot;</span>, j)<br>        results &lt;- j * <span class="hljs-number">2</span><br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br><br>    <span class="hljs-keyword">const</span> numJobs = <span class="hljs-number">5</span><br>    jobs := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>, numJobs)<br>    results := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>, numJobs)<br><br>    <span class="hljs-keyword">for</span> w := <span class="hljs-number">1</span>; w &lt;= <span class="hljs-number">3</span>; w++ &#123;<br>        <span class="hljs-keyword">go</span> worker(w, jobs, results)<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> j := <span class="hljs-number">1</span>; j &lt;= numJobs; j++ &#123;<br>        jobs &lt;- j<br>    &#125;<br>    <span class="hljs-built_in">close</span>(jobs)<br><br>    <span class="hljs-keyword">for</span> a := <span class="hljs-number">1</span>; a &lt;= numJobs; a++ &#123;<br>        &lt;-results<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="示例-一个基于超时的并发TCP服务器"><a href="#示例-一个基于超时的并发TCP服务器" class="headerlink" title="示例:一个基于超时的并发TCP服务器"></a>示例:一个基于超时的并发TCP服务器</h3><pre class="language-go" data-language="go"><code class="language-go">
+<span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">"fmt"</span>
+    <span class="token string">"time"</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">worker</span><span class="token punctuation">(</span>id <span class="token builtin">int</span><span class="token punctuation">,</span> jobs <span class="token operator">&lt;-</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> results <span class="token keyword">chan</span><span class="token operator">&lt;-</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token keyword">range</span> jobs <span class="token punctuation">&#123;</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"worker"</span><span class="token punctuation">,</span> id<span class="token punctuation">,</span> <span class="token string">"started  job"</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+        time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+        fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">"worker"</span><span class="token punctuation">,</span> id<span class="token punctuation">,</span> <span class="token string">"finished job"</span><span class="token punctuation">,</span> j<span class="token punctuation">)</span>
+        results <span class="token operator">&lt;-</span> j <span class="token operator">*</span> <span class="token number">2</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+
+<span class="token keyword">const</span> numJobs <span class="token operator">=</span> <span class="token number">5</span>
+jobs <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> numJobs<span class="token punctuation">)</span>
+results <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> numJobs<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> w <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> w <span class="token operator">&lt;=</span> <span class="token number">3</span><span class="token punctuation">;</span> w<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">go</span> <span class="token function">worker</span><span class="token punctuation">(</span>w<span class="token punctuation">,</span> jobs<span class="token punctuation">,</span> results<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> j <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> j <span class="token operator">&lt;=</span> numJobs<span class="token punctuation">;</span> j<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    jobs <span class="token operator">&lt;-</span> j
+<span class="token punctuation">&#125;</span>
+<span class="token function">close</span><span class="token punctuation">(</span>jobs<span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> a <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> a <span class="token operator">&lt;=</span> numJobs<span class="token punctuation">;</span> a<span class="token operator">++</span> <span class="token punctuation">&#123;</span>
+    <span class="token operator">&lt;-</span>results
+<span class="token punctuation">&#125;</span>
+
+<span class="token punctuation">&#125;</span>
+</code></pre>
 
 <p>这段代码演示了 Go 语言中的经典并发模式——工作池模式。</p>
 <p>在代码中，我们定义了一个 <code>worker()</code> 函数，它将在一个 goroutine 中运行。<code>worker()</code> 函数接受两个通道参数：<code>jobs</code> 和 <code>results</code>。<code>jobs</code> 通道用于接收任务，<code>results</code> 通道用于发送任务结果。</p>
@@ -637,7 +932,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://cidyerlia.github.io/2023/10/09/go1-2/">https://cidyerlia.github.io/2023/10/09/go1-2/</a>
+                    <a href="https://cidyerlia.github.io/2023/12/17/go-bing-fa/">https://cidyerlia.github.io/2023/12/17/go-bing-fa/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -722,9 +1017,60 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2023/12/17/go-bing-fa/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="GO并发">
+                        
+                        <span class="card-title">GO并发</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" class="post-category">
+                                    Go语言入门
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
+                        <span class="chip bg-color">原创</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2023/12/17/chao-shi-yong-de-go-yu-yan-ji-chu-jiao-cheng-rang-ni-kuai-su-shang-shou/">
                     <div class="card-image">
@@ -742,9 +1088,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2023-12-17
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-12-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -757,56 +1103,6 @@
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                        <span class="chip bg-color">原创</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/2023/10/09/go1-2/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="Golang扫盲式学习——GO并发">
-                        
-                        <span class="card-title">Golang扫盲式学习——GO并发</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-10-09
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Go/" class="post-category">
-                                    Go
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
                 
                 <div class="card-action article-tags">
                     
