@@ -6,7 +6,7 @@
   <link href="https://cidyerlia.github.io/atom.xml" rel="self"/>
   
   <link href="https://cidyerlia.github.io/"/>
-  <updated>2023-12-17T07:31:18.000Z</updated>
+  <updated>2023-12-17T08:53:16.000Z</updated>
   <id>https://cidyerlia.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>K8s集群认证和授权</title>
+    <link href="https://cidyerlia.github.io/2023/12/17/k8s-ji-qun-ren-zheng-he-shou-quan/"/>
+    <id>https://cidyerlia.github.io/2023/12/17/k8s-ji-qun-ren-zheng-he-shou-quan/</id>
+    <published>2023-12-17T08:10:01.000Z</published>
+    <updated>2023-12-17T08:53:16.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;K8s集群中的认证和授权&quot;&gt;&lt;a href=&quot;#K8s集群中的认证和授权&quot; class=&quot;headerlink&quot; title=&quot;K8s集群中的认证和授权&quot;&gt;&lt;/a&gt;K8s集群中的认证和授权&lt;/h1&gt;&lt;h2 id=&quot;K8s里的两类用户&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="云原生安全" scheme="https://cidyerlia.github.io/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="原创" scheme="https://cidyerlia.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>GO并发</title>
