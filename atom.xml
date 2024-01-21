@@ -6,7 +6,7 @@
   <link href="https://cidyerlia.github.io/atom.xml" rel="self"/>
   
   <link href="https://cidyerlia.github.io/"/>
-  <updated>2024-01-21T09:44:18.000Z</updated>
+  <updated>2024-01-21T10:05:10.000Z</updated>
   <id>https://cidyerlia.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>K8s RBAC权限管理</title>
+    <link href="https://cidyerlia.github.io/2024/01/21/rbac-quan-xian-guan-li/"/>
+    <id>https://cidyerlia.github.io/2024/01/21/rbac-quan-xian-guan-li/</id>
+    <published>2024-01-21T09:54:47.000Z</published>
+    <updated>2024-01-21T10:05:10.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;K8s-RBAC权限管理&quot;&gt;&lt;a href=&quot;#K8s-RBAC权限管理&quot; class=&quot;headerlink&quot; title=&quot;K8s RBAC权限管理&quot;&gt;&lt;/a&gt;K8s RBAC权限管理&lt;/h1&gt;&lt;h2 id=&quot;RBAC中的三个重要概念&quot;&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="云原生安全" scheme="https://cidyerlia.github.io/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/"/>
+    
+    
+    <category term="原创" scheme="https://cidyerlia.github.io/tags/%E5%8E%9F%E5%88%9B/"/>
+    
+  </entry>
   
   <entry>
     <title>Go语言速成指南（二）</title>
