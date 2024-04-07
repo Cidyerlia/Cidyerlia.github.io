@@ -4,15 +4,14 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="K8s RBAC权限管理, AI Cloud Native 嘉沐 深度学习 云原生安全基线">
-    <meta name="description" content="K8s RBAC权限管理RBAC中的三个重要概念
-Role：定义一个权限的集合体。
-Subject：被授予权限的主体。
-RoleBinding：定义“Role”和“Subject”的绑定关系。
+    <meta name="keywords" content="Git分支-分支的新建与合并, AI Cloud Native 嘉沐 深度学习 云原生安全基线">
+    <meta name="description" content="Git分支-分支的新建与合并实际场景让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：
 
+开发某个网站。
+为实现某个新的用户需求，创建一个分支。
+在这个分支上开展工作。
 
-
-从上图中可以看出，Binding操作是将">
+正在此时，你突然">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -24,7 +23,7 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>K8s RBAC权限管理 | 嘉沐のBlog</title>
+    <title>Git分支-分支的新建与合并 | 嘉沐のBlog</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     
 
@@ -340,12 +339,12 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">K8s RBAC权限管理</h1>
+                    <h1 class="description center-align post-title">Git分支-分支的新建与合并</h1>
                 </div>
             </div>
         </div>
@@ -369,8 +368,8 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                <span class="chip bg-color">原创</span>
+                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                <span class="chip bg-color">转载</span>
                             </a>
                         
                     </div>
@@ -381,8 +380,8 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/" class="post-category">
-                                云原生安全
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -394,7 +393,7 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2024-01-21
+                    2024-04-07
                 </div>
                 
 
@@ -418,111 +417,83 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="K8s-RBAC权限管理"><a href="#K8s-RBAC权限管理" class="headerlink" title="K8s RBAC权限管理"></a>K8s RBAC权限管理</h1><h2 id="RBAC中的三个重要概念"><a href="#RBAC中的三个重要概念" class="headerlink" title="RBAC中的三个重要概念"></a>RBAC中的三个重要概念</h2><ul>
-<li>Role：定义一个权限的集合体。</li>
-<li>Subject：被授予权限的主体。</li>
-<li>RoleBinding：定义“Role”和“Subject”的绑定关系。</li>
-</ul>
-<img src="/2024/01/21/rbac-quan-xian-guan-li/fig1.png" class="">
-
-<p>从上图中可以看出，Binding操作是将Subject和Role绑定在一起，实现将一个角色（Role）赋予一个主体账号（Subject）的功能。Role定义了权限的集合，也可以称为<strong>权限规则</strong>，即这个角色具备哪些权限。</p>
-<p>rules定义了权限的详细信息，apiGroups定义了<strong>资源组类别</strong>，*apiGroups&#x3D;””*表示使用缺省的core组资源类别（属于core组资源的有Pod、Namespace、Depolyment、DaemonSet等）。resources定义了<strong>资源范围</strong>（Pod、Namespace、Depolyment、DaemonSet等），verbs定义了针对<strong>资源的动作</strong>（get、list、watch、create、delete、update等）。</p>
-<h2 id="三种绑定方案"><a href="#三种绑定方案" class="headerlink" title="三种绑定方案"></a>三种绑定方案</h2><h3 id="Role-RoleBinding"><a href="#Role-RoleBinding" class="headerlink" title="Role &amp; RoleBinding"></a>Role &amp; RoleBinding</h3><blockquote>
-<p>这种绑定方式是最常见的，为了将权限限制在某个特定的namespace下。</p>
-</blockquote>
-<img src="/2024/01/21/rbac-quan-xian-guan-li/fig2.png" class="">
-
-<p>从图中不难看出，通过RoleBinding将Subject和Role绑定，可以将Subject的权限收敛在一个namespace:A，该Subject的任何操作只能针对namespace:A下生效，不能在namespace:B下生效。</p>
-<p>假设一个场景，xiaoming是某业务应用的负责人，该业务应用统一部署在A命名空间下。xiaoming需要能够观测到业务容器的状态，现在要为他创建一个角色，该如何做？针对xiaoming这个主体创建一个namespace:A下的权限角色pod-reader，然后将该主体绑定到pod-reader即可。</p>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1beta1
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> A
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader <span class="token comment"># 这个角色的名称为pod-reader</span>
-<span class="token key atrule">rules</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token string">""</span> <span class="token comment"># 空字符串"" 表明使用 core API group</span>
-  <span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"pods"</span><span class="token punctuation">]</span>
-  <span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"watch"</span><span class="token punctuation">,</span> <span class="token string">"list"</span><span class="token punctuation">]</span></code></pre>
-
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">kind</span><span class="token punctuation">:</span> RoleBinding
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1beta1
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> read<span class="token punctuation">-</span>pods
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> A
-<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> User
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> xiaoming
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
-<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
-  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io</code></pre>
-
-<h3 id="ClusterRole-RoleBinding"><a href="#ClusterRole-RoleBinding" class="headerlink" title="ClusterRole &amp; RoleBinding"></a>ClusterRole &amp; RoleBinding</h3><blockquote>
-<p>ClusterRole定义的是通用权限。生效范围依旧由RoleBinding决定。</p>
-</blockquote>
-<img src="/2024/01/21/rbac-quan-xian-guan-li/fig3.png" class="">
-
-<p>ClusterRole的名称往往会给人一种权限生效范围是整个集群的感觉，但事实上却不是这样的。<strong>权限生效的范围永远都是由Binding确定的。</strong>ClusterRole设置权限的范围是集群对象。</p>
-<p>假设一个场景，xiaoming是某业务应用的负责人，该业务应用统一部署在A命名空间下。xiaoming需要能够观测到业务容器的状态，此时，xiaohon想观测到B命名空间的容器状态，需求和xiaoming一致，但命名空间不同，该怎么做？</p>
-<p>两种做法：</p>
+                <h1 id="Git分支-分支的新建与合并"><a href="#Git分支-分支的新建与合并" class="headerlink" title="Git分支-分支的新建与合并"></a>Git分支-分支的新建与合并</h1><h2 id="实际场景"><a href="#实际场景" class="headerlink" title="实际场景"></a>实际场景</h2><p>让我们来看一个简单的分支新建与分支合并的例子，实际工作中你可能会用到类似的工作流。 你将经历如下步骤：</p>
 <ol>
-<li><p>分别针对xiaoming和xiaohong生成命名空间A和命名空间B的Role，然后再生成RoleBinding。如此，需要写2个Role.yaml和2个RoleBinding.yaml</p>
+<li>开发某个网站。</li>
+<li>为实现某个新的用户需求，创建一个分支。</li>
+<li>在这个分支上开展工作。</li>
+</ol>
+<p>正在此时，你突然接到一个电话说有个很严重的问题需要紧急修补。 你将按照如下方式来处理：</p>
+<ol>
+<li><p>切换到你的线上分支（production branch）。</p>
 </li>
-<li><p>抽象出xiaoming和xiaohong的公共需求，然后根据该需求生成一个ClusterRole，然后再生成各自的RoleBinding，通过RoleBinding把权限生效范围规定在不同的namespace下。</p>
+<li><p>为这个紧急任务新建一个分支，并在其中修复它。</p>
+</li>
+<li><p>在测试通过之后，切换回线上分支，然后合并这个修补分支，最后将改动推送到线上分支。</p>
+</li>
+<li><p>切换回你最初工作的分支上，继续工作。</p>
 </li>
 </ol>
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">kind</span><span class="token punctuation">:</span> ClusterRole
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1beta1
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token comment"># 鉴于 ClusterRole 是集群范围对象，所以这里不需要定义 "namespace"</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
-<span class="token key atrule">rules</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">apiGroups</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">""</span><span class="token punctuation">]</span>
-<span class="token key atrule">resources</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"pods"</span><span class="token punctuation">]</span>
-<span class="token key atrule">verbs</span><span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"watch"</span><span class="token punctuation">,</span> <span class="token string">"list"</span><span class="token punctuation">]</span></code></pre>
+<h2 id="分支的新建与合并"><a href="#分支的新建与合并" class="headerlink" title="分支的新建与合并"></a>分支的新建与合并</h2><h3 id="新建分支"><a href="#新建分支" class="headerlink" title="新建分支"></a>新建分支</h3><p>首先，我们假设你正在你的项目上工作，并且在 master 分支上已经有了一些提交。</p>
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig1.png" class="" title="一个简单提交历史">
 
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">kind</span><span class="token punctuation">:</span> RoleBinding
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1beta1
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> read<span class="token punctuation">-</span>pods<span class="token punctuation">-</span>A
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> A
-<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> User
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> xiaoming
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
-<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
-  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io</code></pre>
+<p>现在，你已经决定要解决你的公司使用的问题追踪系统中的 #53 问题。想要新建一个分支并同时切换到那个分支上，你可以运行一个带有<code>-b</code>参数的 git checkout 命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> iss53   <span class="token comment"># Switched to a new branch "iss53"  </span></code></pre>
 
-<pre class="language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">kind</span><span class="token punctuation">:</span> RoleBinding
-<span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> rbac.authorization.k8s.io/v1beta1
-<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> read<span class="token punctuation">-</span>pods<span class="token punctuation">-</span>B
-  <span class="token key atrule">namespace</span><span class="token punctuation">:</span> B
-<span class="token key atrule">subjects</span><span class="token punctuation">:</span>
-<span class="token punctuation">-</span> <span class="token key atrule">kind</span><span class="token punctuation">:</span> User
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> xiaohong
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io
-<span class="token key atrule">roleRef</span><span class="token punctuation">:</span>
-  <span class="token key atrule">kind</span><span class="token punctuation">:</span> Role
-  <span class="token key atrule">name</span><span class="token punctuation">:</span> pod<span class="token punctuation">-</span>reader
-  <span class="token key atrule">apiGroup</span><span class="token punctuation">:</span> rbac.authorization.k8s.io</code></pre>
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig2.png" class="" title="创建一个新分支指针">
 
-<p>也可以使用ClusterRole授权其他资源权限：</p>
-<ul>
-<li><p>集群范围资源（Node)</p>
-</li>
-<li><p>非资源类型endpoint</p>
-</li>
-<li><p>跨所有命名空间范围的资源</p>
-</li>
-</ul>
-<h3 id="ClusterRole-ClusterRoleBinding"><a href="#ClusterRole-ClusterRoleBinding" class="headerlink" title="ClusterRole &amp; ClusterRoleBinding"></a>ClusterRole &amp; ClusterRoleBinding</h3><blockquote>
-<p>ClusterRoleBinding表示<strong>生效范围是整个集群</strong>，且只能配合ClusterRole使用。</p>
-</blockquote>
-<img src="/2024/01/21/rbac-quan-xian-guan-li/fig4.png" class="">
+<p>你继续在 #53 问题上工作，并且做了一些提交。在此过程中，iss53 分支在不断的向前推进，因为你已经检出到该分支 （也就是说，你的 HEAD 指针指向了 iss53 分支）</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> commit <span class="token parameter variable">-a</span> <span class="token parameter variable">-m</span> <span class="token string">'added a new footer [issue 53]'</span>  </code></pre>
+
+<p>现在你接到那个电话，有个紧急问题等待你来解决。有了 Git 的帮助，你不必把这个紧急问题和 iss53 的修改混在一起，你也不需要花大力气来还原关于 53# 问题的修改，然后再添加关于这个紧急问题的修改，最后将这个修改提交到线上分支。你所要做的仅仅是切换回 master 分支。</p>
+<p>但是，在你这么做之前，要留意你的工作目录和暂存区里那些还没有被提交的修改，它可能会和你即将检出的分支产生冲突从而阻止 Git 切换到该分支。最好的方法是，在你切换分支之前，保持好一个干净的状态。有一些方法可以绕过这个问题（即，贮藏（stashing） 和 修补提交（commit amending）)，我们会在 <a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/ch00/_git_stashing">贮藏与清理</a> 中看到关于这两个命令的介绍。 现在，我们假设你已经把你的修改全部提交了，这时你可以切换回 master 分支了：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout master   <span class="token comment">#Switched to branch 'master'  </span></code></pre>
+
+<p>这个时候，你的工作目录和你在开始 #53 问题之前一模一样，现在你可以专心修复紧急问题了。请牢记：当你切换分支的时候，Git 会重置你的工作目录，使其看起来像回到了你在那个分支上最后一次提交的样子。Git会自动添加、删除、修改文件以确保此时你的工作目录和这个分支最后一次提交时的样子一模一样。</p>
+<p>接下来，你要修复这个紧急问题。我们来建立一个 hotfix 分支，在该分支上工作直到问题解决：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout <span class="token parameter variable">-b</span> hotfix   <span class="token comment">#Switched to a new branch 'hotfix'   </span>
+<span class="token function">vim</span> index.html  
+<span class="token function">git</span> commit <span class="token parameter variable">-a</span> <span class="token parameter variable">-m</span> <span class="token string">'fixed the broken email address'</span>   
+<span class="token comment"># [hotfix 1fb7853] fixed the broken email address    1 file changed, 2 insertions(+)  </span></code></pre>
+
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig3.png" class="" title="基于 master 分支的紧急问题分支 hotfix branch">
+
+<p>你可以运行你的测试，确保你的修改是正确的，然后将 hotfix 分支合并回你的 master 分支来部署到线上。 你可以使用 git merge 命令来达到上述目的：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout master   
+<span class="token function">git</span> merge hotfix   
+<span class="token comment"># Updating f42c576..3a0874c   Fast-forward    index.html | 2 ++    1 file changed, 2 insertions(+)  </span></code></pre>
+
+<p>在合并的时候，你应该注意到了“快进（fast-forward）”这个词。由于你想要合并的分支 hotfix 所指向的提交 C4 是你所在的提交 C2 的直接后继，因此 Git 会直接将指针向前移动。换句话说，当你试图合并两个分支时，如果顺着一个分支走下去能够到达另一个分支，那么 Git 在合并两者的时候，只会简单的将指针向前推进（指针右移），因为这种情况下的合并操作没有需要解决的分歧——这就叫做 “快进（fast-forward）”。</p>
+<p>现在，最新的修改已经在 master 分支所指向的提交快照中，你可以着手发布该修复了。</p>
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig4.png" class="" title="master 被快进到 hotfix">
+
+<p>关于这个紧急问题的解决方案发布之后，你准备回到被打断之前时的工作中。 然而，你应该先删除 hotfix 分支，因为你已经不再需要它了 —— master 分支已经指向了同一个位置。 你可以使用带 -d 选项的 git branch 命令来删除分支：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-d</span> hotfix   <span class="token comment">#Deleted branch hotfix (3a0874c).  </span></code></pre>
+
+<p>现在你可以切换回你正在工作的分支继续你的工作，也就是针对 #53 问题的那个分支（iss53 分支）。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout iss53   <span class="token comment">#Switched to branch "iss53"   </span>
+<span class="token function">vim</span> index.html   
+<span class="token function">git</span> commit <span class="token parameter variable">-a</span> <span class="token parameter variable">-m</span> <span class="token string">'finished the new footer [issue 53]'</span>   
+<span class="token comment"># [iss53 ad82d7a] finished the new footer [issue 53]   1 file changed, 1 insertion(+)  </span></code></pre>
+
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig5.png" class="" title="继续在 iss53 分支上的工作">
+
+<p>你在 hotfix 分支上所做的工作并没有包含到 iss53 分支中。如果你需要拉取 hotfix 所做的修改，你可以使用 git merge master 命令将 master 分支合并入 iss53 分支，或者你也可以等到 iss53 分支完成其使命，再将其合并回 master 分支。</p>
+<h3 id="分支的合并"><a href="#分支的合并" class="headerlink" title="分支的合并"></a>分支的合并</h3><p>假设你已经修正了 #53 问题，并且打算将你的工作合并入 master 分支。 为此，你需要合并 iss53 分支到 master 分支，这和之前你合并 hotfix 分支所做的工作差不多。 你只需要检出到你想合并入的分支，然后运行 git merge 命令：</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout master   Switched to branch <span class="token string">'master'</span>   
+<span class="token function">git</span> merge iss53   
+<span class="token comment"># Merge made by the 'recursive' strategy.   index.html |  1 +   1 file changed, 1 insertion(+)  </span></code></pre>
+
+<p>这和你之前合并 hotfix 分支的时候看起来有一点不一样。在这种情况下，你的开发历史从一个更早的地方开始分叉开来（diverged）。 因为，master 分支所在提交并不是 iss53 分支所在提交的直接祖先，Git 不得不做一些额外的工作。出现这种情况的时候，Git 会使用两个分支的末端所指的快照（C4 和 C5）以及这两个分支的公共祖先（C2），做一个简单的三方合并。</p>
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig6.png" class="" title="一次典型合并中所用到的三个快照">
+
+<p>和之前将分支指针向前推进所不同的是，Git 将此次三方合并的结果做了一个新的快照并且自动创建一个新的提交指向它。 这个被称作一次合并提交，它的特别之处在于他有不止一个父提交。</p>
+<img src="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/fig7.png" class="" title="一个合并提交">
+
+<p>既然你的修改已经合并进来了，就不再需要 iss53 分支了。 现在你可以在任务追踪系统中关闭此项任务，并删除这个分支。</p>
+<pre class="language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> branch <span class="token parameter variable">-d</span> iss53  </code></pre>
+
+<p>转载：<a target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%9A%84%E6%96%B0%E5%BB%BA%E4%B8%8E%E5%90%88%E5%B9%B6">Git - 分支的新建与合并</a></p>
 
                 
             </div>
@@ -549,7 +520,7 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://cidyerlia.github.io/2024/01/21/rbac-quan-xian-guan-li/">https://cidyerlia.github.io/2024/01/21/rbac-quan-xian-guan-li/</a>
+                    <a href="https://cidyerlia.github.io/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/">https://cidyerlia.github.io/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -587,8 +558,8 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E5%8E%9F%E5%88%9B/">
-                                    <span class="chip bg-color">原创</span>
+                                <a href="/tags/%E8%BD%AC%E8%BD%BD/">
+                                    <span class="chip bg-color">转载</span>
                                 </a>
                             
                         </div>
@@ -634,9 +605,10 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2024/04/07/git-fen-zhi-fen-zhi-de-xin-jian-yu-he-bing/">
                     <div class="card-image">
@@ -654,9 +626,9 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-04-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -669,6 +641,7 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -687,13 +660,13 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2024/01/20/go-yu-yan-su-cheng-zhi-nan-er/">
+                <a href="/2024/01/21/rbac-quan-xian-guan-li/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="Go语言速成指南（二）">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="K8s RBAC权限管理">
                         
-                        <span class="card-title">Go语言速成指南（二）</span>
+                        <span class="card-title">K8s RBAC权限管理</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -704,14 +677,14 @@ RoleBinding：定义“Role”和“Subject”的绑定关系。
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2024-01-21
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Go%E8%AF%AD%E8%A8%80%E5%85%A5%E9%97%A8/" class="post-category">
-                                    Go语言入门
+                            <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F%E5%AE%89%E5%85%A8/" class="post-category">
+                                    云原生安全
                                 </a>
                             
                             
